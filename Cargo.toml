@@ -2,6 +2,14 @@
 name = "slint_init"
 version = "0.1.0"
 edition = "2024"
+authors = ["paper tiger <ljxh2024@qq.com>"]
+description = "slint_init is a command-line tool for quickly initializing Slint projects."
+homepage = "https://github.com/ljxh2024/slint_init"
+documentation = "https://github.com/ljxh2024/slint_init"
+repository = "https://github.com/ljxh2024/slint_init"
+keywords = ["slint"]
+categories = ["command-line-utilities"]
+license = "MIT"
 
 [dependencies]
 

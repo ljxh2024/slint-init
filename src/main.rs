@@ -2,8 +2,7 @@ use std::{
     env,
     fs::{self, File},
     io::Write,
-    os::windows::process::CommandExt,
-    process::{Command, ExitCode},
+    process::ExitCode,
 };
 
 fn main() -> ExitCode {
@@ -71,19 +70,9 @@ slint-build = "1.13.0""#,
 }"#;
     build_rs_file.write_all(build_rs.as_bytes())?;
 
-    // readme.md
-    let mut readme_file = File::create(dir.to_string() + "/README.md")?;
-    readme_file.write_all(format!("# {dir}").as_bytes())?;
-
-    // git init
-    if let Err(e) = Command::new("git")
-        .current_dir(dir)
-        .creation_flags(0x08000000)
-        .arg("init")
-        .status()
-    {
-        eprintln!("git init error:{e}");
-    }
+    // .gitignore
+    let mut gitignore_file = File::create(dir.to_string() + "/.gitignore")?;
+    gitignore_file.write_all(b"/target")?;
 
     Ok(())
 }
