@@ -1,6 +1,6 @@
 [package]
 name = "slint_init"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 authors = ["paper tiger <ljxh2024@qq.com>"]
 description = "slint_init is a command-line tool for quickly initializing Slint projects."
