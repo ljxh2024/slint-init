@@ -1,3 +1,3 @@
 # slint_init
 
-Initialize the `Slint` project,The current `Slint` version is `1.13.0`,Rust `edition` using `2024`.
+初始化 `Slint` 项目，当前 `Slint` 版本为 `1.13.0`，Rust `edition` 使用 `2024`。
