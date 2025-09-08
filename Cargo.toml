@@ -1,9 +1,9 @@
 [package]
-name = "slint_init"
+name = "slint-init"
 version = "0.1.0"
 edition = "2024"
 authors = ["paper tiger <ljxh2024@qq.com>"]
-description = "slint_init is a command-line tool for quickly initializing Slint projects."
+description = "slint-init is a command-line tool for quickly initializing Slint projects."
 homepage = "https://github.com/ljxh2024/slint_init"
 documentation = "https://github.com/ljxh2024/slint_init"
 repository = "https://github.com/ljxh2024/slint_init"
