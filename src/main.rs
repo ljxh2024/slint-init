@@ -74,5 +74,9 @@ slint-build = "1.13.0""#,
     let mut gitignore_file = File::create(dir.to_string() + "/.gitignore")?;
     gitignore_file.write_all(b"/target")?;
 
+    // readme.md
+    let mut readme_file = File::create(dir.to_string() + "/README.md")?;
+    readme_file.write_all(format!("# {dir}").as_bytes())?;
+
     Ok(())
 }
