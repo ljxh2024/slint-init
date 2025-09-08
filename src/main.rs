@@ -56,7 +56,7 @@ slint-build = "1.13.0""#,
     cargo_toml_file.write_all(cargo_toml.as_bytes())?;
 
     // app-window.slint
-    let mut slint_file = File::create(dir.to_string() + "/ui/app-window.slin")?;
+    let mut slint_file = File::create(dir.to_string() + "/ui/app-window.slint")?;
     let slint = r#"export component MainWindow inherits Window {
     Text {
         text: "hello world!";
