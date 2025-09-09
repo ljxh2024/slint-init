@@ -5,14 +5,14 @@ use std::{
     process::ExitCode,
 };
 
-const VERISON: &str = "slint-init 0.1.0 (2025-09-09)";
+const VERSION: &str = "slint-init 0.1.0 (2025-09-09)";
 
 fn main() -> ExitCode {
     let args = env::args().collect::<Vec<String>>();
 
     // print help
     if args.len() == 1 || &args[1] == "-h" {
-        println!("{VERISON}");
+        println!("{VERSION}");
         println!(
             r#"A command-line tool for quickly initializing Slint projects
 
@@ -28,7 +28,7 @@ OPTIONS:
 
     // print version
     if &args[1] == "-v" {
-        println!("{VERISON}");
+        println!("{VERSION}");
         return ExitCode::SUCCESS;
     }
 
