@@ -5,7 +5,7 @@ use std::{
     process::ExitCode,
 };
 
-const VERISON: &str  = "slint-init 0.1.0 (2025-09-09)";
+const VERISON: &str = "slint-init 0.1.0 (2025-09-09)";
 
 fn main() -> ExitCode {
     let args = env::args().collect::<Vec<String>>();
@@ -13,18 +13,20 @@ fn main() -> ExitCode {
     // print help
     if args.len() == 1 || &args[1] == "-h" {
         println!("{VERISON}");
-        println!(r#"A command-line tool for quickly initializing Slint projects
+        println!(
+            r#"A command-line tool for quickly initializing Slint projects
 
 Usage: slint-init [OPTIONS] PROJECT_NAME
 
 OPTIONS:
-  -v    Print version info
+  -v    Print version
   -h    Print help
-"#);
+"#
+        );
         return ExitCode::SUCCESS;
     }
 
-    // print version info
+    // print version
     if &args[1] == "-v" {
         println!("{VERISON}");
         return ExitCode::SUCCESS;
@@ -35,7 +37,7 @@ OPTIONS:
         return ExitCode::FAILURE;
     }
 
-    if let Err(e) = create_file(&args[1]) {
+    if let Err(e) = init_project(&args[1]) {
         eprintln!("{e}");
         return ExitCode::FAILURE;
     }
@@ -43,7 +45,7 @@ OPTIONS:
     ExitCode::SUCCESS
 }
 
-fn create_file(dir: &str) -> std::io::Result<()> {
+fn init_project(dir: &str) -> std::io::Result<()> {
     // create directory: src and ui
     fs::create_dir_all(dir.to_string() + "/src")?;
     fs::create_dir(dir.to_string() + "/ui")?;
