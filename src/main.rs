@@ -12,6 +12,7 @@ fn main() -> ExitCode {
 
     // print help
     if args.len() == 1 || &args[1] == "-h" {
+        println!("{VERISON}");
         println!(r#"A command-line tool for quickly initializing Slint projects
 
 Usage: slint-init [OPTIONS] PROJECT_NAME
