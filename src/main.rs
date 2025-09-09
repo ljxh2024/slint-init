@@ -42,6 +42,7 @@ OPTIONS:
         return ExitCode::FAILURE;
     }
 
+    println!("Initialization successful.");
     ExitCode::SUCCESS
 }
 
