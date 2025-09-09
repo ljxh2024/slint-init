@@ -17,3 +17,17 @@ $ slint-init test1
 ```
 
 This will initialize a `Rust` + `Slint` project, where the project name is `test1`.
+
+## Other commands
+
+### Print help
+
+```shell
+$ slint-init -h
+```
+
+### Print version info
+
+```shell
+$ slint-init -v
+```
