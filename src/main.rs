@@ -5,10 +5,32 @@ use std::{
     process::ExitCode,
 };
 
+const VERISON: &str  = "slint-init 0.1.0 (2025-09-09)";
+
 fn main() -> ExitCode {
     let args = env::args().collect::<Vec<String>>();
-    if args.len() != 2 {
-        eprintln!("Invalid parameter");
+
+    // print help
+    if args.len() == 1 || &args[1] == "-h" {
+        println!(r#"A command-line tool for quickly initializing Slint projects
+
+Usage: slint-init [OPTIONS] PROJECT_NAME
+
+OPTIONS:
+  -v    Print version info
+  -h    Print help
+"#);
+        return ExitCode::SUCCESS;
+    }
+
+    // print version info
+    if &args[1] == "-v" {
+        println!("{VERISON}");
+        return ExitCode::SUCCESS;
+    }
+
+    if args.len() > 2 {
+        eprintln!("Invalid pattern");
         return ExitCode::FAILURE;
     }
 
