@@ -102,7 +102,5 @@ slint-build = "1.13.0""#,
 
     // readme.md
     let mut readme_file = File::create(dir.to_string() + "/README.md")?;
-    readme_file.write_all(format!("# {dir}").as_bytes())?;
-
-    Ok(())
+    readme_file.write_all(format!("# {dir}").as_bytes())
 }
