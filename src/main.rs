@@ -5,7 +5,7 @@ use std::{
     process::ExitCode,
 };
 
-const VERSION: &str = "slint-init 0.1.0 (2025-09-09)";
+const VERSION: &str = "slint-init 0.1.1 (2025-09-12)";
 
 fn main() -> ExitCode {
     let args = env::args().collect::<Vec<String>>();
@@ -72,10 +72,10 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-slint = "1.13.0"
+slint = "1.13.1"
 
 [build-dependencies]
-slint-build = "1.13.0""#,
+slint-build = "1.13.1""#,
         dir
     );
     cargo_toml_file.write_all(cargo_toml.as_bytes())?;
