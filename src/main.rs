@@ -11,7 +11,7 @@ fn main() -> ExitCode {
     let args = env::args().collect::<Vec<String>>();
 
     // print help
-    if args.len() == 1 || &args[1] == "-h" {
+    if args.len() == 1 || args[1] == "-h" {
         println!("{VERSION}");
         println!(
             r#"A command-line tool for quickly initializing Slint projects
@@ -27,7 +27,7 @@ OPTIONS:
     }
 
     // print version
-    if &args[1] == "-v" {
+    if args[1] == "-v" {
         println!("{VERSION}");
         return ExitCode::SUCCESS;
     }
@@ -42,31 +42,34 @@ OPTIONS:
         return ExitCode::FAILURE;
     }
 
-    println!("Initialization successful.");
     ExitCode::SUCCESS
 }
 
+// Initialize a new Slint project in the specified directory
 fn init_project(dir: &str) -> std::io::Result<()> {
     // create directory: src and ui
     fs::create_dir_all(dir.to_string() + "/src")?;
     fs::create_dir(dir.to_string() + "/ui")?;
 
     // main.rs
-    let mut main_file = File::create(dir.to_string() + "/src/main.rs")?;
-    let main_rs = r#"#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
+    File::create(dir.to_string() + "/src/main.rs")?.write_all(
+        r#"
+#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 slint::include_modules!();
 
 fn main() -> Result<(), slint::PlatformError> {
     let window = MainWindow::new()?;
     window.run()
-}"#;
-    main_file.write_all(main_rs.as_bytes())?;
+}"#
+        .as_bytes(),
+    )?;
 
     // Cargo.toml
-    let mut cargo_toml_file = File::create(dir.to_string() + "/Cargo.toml")?;
-    let cargo_toml = format!(
-        r#"[package]
+    File::create(dir.to_string() + "/Cargo.toml")?.write_all(
+        format!(
+            r#"
+[package]
 name = "{}"
 version = "0.1.0"
 edition = "2024"
@@ -75,32 +78,37 @@ edition = "2024"
 slint = "1.13.1"
 
 [build-dependencies]
-slint-build = "1.13.1""#,
-        dir
-    );
-    cargo_toml_file.write_all(cargo_toml.as_bytes())?;
+slint-build = "1.13.1"
+"#,
+            dir
+        )
+        .as_bytes(),
+    )?;
 
     // app-window.slint
-    let mut slint_file = File::create(dir.to_string() + "/ui/app-window.slint")?;
-    let slint = r#"export component MainWindow inherits Window {
+    File::create(dir.to_string() + "/ui/app-window.slint")?.write_all(
+        r#"
+export component MainWindow inherits Window {
     Text {
         text: "hello world!";
     }
-}"#;
-    slint_file.write_all(slint.as_bytes())?;
+}"#
+        .as_bytes(),
+    )?;
 
     // build.rs
-    let mut build_rs_file = File::create(dir.to_string() + "/build.rs")?;
-    let build_rs = r#"fn main() {
+    File::create(dir.to_string() + "/build.rs")?.write_all(
+        r#"
+fn main() {
     slint_build::compile("ui/app-window.slint").expect("Slint build failed");
-}"#;
-    build_rs_file.write_all(build_rs.as_bytes())?;
+}"#
+        .as_bytes(),
+    )?;
 
     // .gitignore
-    let mut gitignore_file = File::create(dir.to_string() + "/.gitignore")?;
-    gitignore_file.write_all(b"/target")?;
-
+    File::create(dir.to_string() + "/.gitignore")?.write_all(b"/target")?;
     // readme.md
-    let mut readme_file = File::create(dir.to_string() + "/README.md")?;
-    readme_file.write_all(format!("# {dir}").as_bytes())
+    File::create(dir.to_string() + "/README.md")?.write_all(format!("# {dir}").as_bytes())?;
+
+    Ok(())
 }
