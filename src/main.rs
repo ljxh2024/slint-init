@@ -53,8 +53,7 @@ fn init_project(dir: &str) -> std::io::Result<()> {
 
     // main.rs
     File::create(dir.to_string() + "/src/main.rs")?.write_all(
-        r#"
-#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
+        r#"#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
 slint::include_modules!();
 
@@ -68,8 +67,7 @@ fn main() -> Result<(), slint::PlatformError> {
     // Cargo.toml
     File::create(dir.to_string() + "/Cargo.toml")?.write_all(
         format!(
-            r#"
-[package]
+            r#"[package]
 name = "{}"
 version = "0.1.0"
 edition = "2024"
@@ -87,8 +85,7 @@ slint-build = "1.13.1"
 
     // app-window.slint
     File::create(dir.to_string() + "/ui/app-window.slint")?.write_all(
-        r#"
-export component MainWindow inherits Window {
+        r#"export component MainWindow inherits Window {
     Text {
         text: "hello world!";
     }
@@ -98,8 +95,7 @@ export component MainWindow inherits Window {
 
     // build.rs
     File::create(dir.to_string() + "/build.rs")?.write_all(
-        r#"
-fn main() {
+        r#"fn main() {
     slint_build::compile("ui/app-window.slint").expect("Slint build failed");
 }"#
         .as_bytes(),
@@ -108,7 +104,5 @@ fn main() {
     // .gitignore
     File::create(dir.to_string() + "/.gitignore")?.write_all(b"/target")?;
     // readme.md
-    File::create(dir.to_string() + "/README.md")?.write_all(format!("# {dir}").as_bytes())?;
-
-    Ok(())
+    File::create(dir.to_string() + "/README.md")?.write_all(format!("# {dir}").as_bytes())
 }
