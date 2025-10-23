@@ -1,6 +1,6 @@
 # slint-init
 
-`slint-init` is a command-line tool for quickly initializing Slint projects,The current `Slint` version using `1.13.1`,Rust `edition` using `2024`.
+`slint-init` is a command-line tool for quickly initializing Slint projects,The current `Slint` version using `1.14.0`,Rust `edition` using `2024`.
 
 ## Usage
 
