@@ -5,7 +5,7 @@ use std::{
     process::ExitCode,
 };
 
-const VERSION: &str = "slint-init 0.1.2 (2025-10-23)";
+const VERSION: &str = "slint-init 0.1.3 (2026-04-22)";
 
 fn main() -> ExitCode {
     let args = env::args().collect::<Vec<String>>();
@@ -73,10 +73,10 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-slint = "1.14.0"
+slint = "1.16.0"
 
 [build-dependencies]
-slint-build = "1.14.0"
+slint-build = "1.16.0"
 "#,
             dir
         )
